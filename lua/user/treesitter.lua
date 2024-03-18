@@ -15,6 +15,13 @@ local M = {
 }
 
 function M.config()
+  require('ts_context_commentstring').setup {
+    enable = true,
+    enable_autocmd = false,
+    -- languages = {
+    --   typescript = '// %s',
+    -- },
+  }
   require("nvim-treesitter.configs").setup {
     ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python" },
     highlight = {
@@ -25,10 +32,6 @@ function M.config()
     indent = { enable = true },
     autotag = { enable = true },
     autopairs = { enable = true },
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
-    },
     ensure_installed = {
       "angular", "asm", "awk", "bash", "bibtex", "c", "cpp", "clojure", "cmake",
       "elixir", "elm", "erlang", "go", "haskell", "html", "java", "javascript", "json",
