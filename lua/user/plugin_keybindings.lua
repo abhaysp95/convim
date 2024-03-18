@@ -35,6 +35,23 @@ keybind('n' , '<C-n>'      , ':NvimTreeToggle<CR>'   , default_opts)
 keybind('n' , '<Space>nr' , ':NvimTreeRefresh<CR>'  , default_opts)
 keybind('n' , '<Space>nf' , ':NvimTreeFindFile<CR>' , default_opts)
 
+--------------
+-- gitsigns --
+--------------
+keybind('n', ']c', '<cmd>lua require"gitsigns".next_hunk()<CR>', default_opts)
+keybind('n', '[c', '<cmd>lua require"gitsigns".prev_hunk()<CR>', default_opts)
+keybind('n', '<Space>hs', '<cmd>lua require"gitsigns".stage_hunk()<CR>', default_opts)
+keybind('n', '<Space>hS', '<cmd>lua require"gitsigns".stage_buffer()<CR>', default_opts)
+keybind('n', '<Space>hu', '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>', default_opts)
+keybind('n', '<Space>hr', '<cmd>lua require"gitsigns".reset_hunk()<CR>', default_opts)
+keybind('n', '<Space>hR', '<cmd>lua require"gitsigns".reset_buffer()<CR>', default_opts)
+keybind('n', '<Space>hU', '<cmd>lua require"gitsigns".reset_buffer_index()<CR>', default_opts)
+keybind('n', '<Space>hp', '<cmd>lua require"gitsigns".preview_hunk()<CR>', default_opts)
+keybind('n', '<Space>hb', '<cmd>lua require"gitsigns".blame_line{full=true}()<CR>', default_opts)
+keybind('n', '<Space>hd', '<cmd>lua require"gitsigns".diffthis()<CR>', default_opts)
+keybind('n', '<Space>hD', '<cmd>lua require"gitsigns".diffthis ~<CR>', default_opts)
+keybind('n', '<Space>ht', '<cmd>lua require"gitsigns".toggle_deleted()<CR>', default_opts)
+
 
 --------------------
 -- nvim-telescope --
@@ -74,14 +91,14 @@ keybind('n' , '<Leader>gp' , [[<cmd>lua require'lspsaga.provider'.preview_defini
 --------------
 -- floaterm --
 --------------
-vim.cmd("let g:floaterm_keymap_new = '<leader>tn'")
-vim.cmd("let g:floaterm_keymap_toggle = '<leader>tl'")
-vim.cmd("let g:floaterm_keymap_prev = '<leader>tj'")
-vim.cmd("let g:floaterm_keymap_next = '<leader>tk'")
-keybind('n', '<Leader>tn', ':FloatermNew<CR>', default_opts)
-keybind('n', '<Leader>tl', ':FloatermToggle<CR>', default_opts)
-keybind('n', '<Leader>tj', ':FloatermPrev<CR>', default_opts)
-keybind('n', '<Leader>tk', ':FloatermNext<CR>', default_opts)
+-- vim.cmd("let g:floaterm_keymap_new = '<leader>tn'")
+-- vim.cmd("let g:floaterm_keymap_toggle = '<leader>tl'")
+-- vim.cmd("let g:floaterm_keymap_prev = '<leader>tj'")
+-- vim.cmd("let g:floaterm_keymap_next = '<leader>tk'")
+-- keybind('n', '<Leader>tn', ':FloatermNew<CR>', default_opts)
+-- keybind('n', '<Leader>tl', ':FloatermToggle<CR>', default_opts)
+-- keybind('n', '<Leader>tj', ':FloatermPrev<CR>', default_opts)
+-- keybind('n', '<Leader>tk', ':FloatermNext<CR>', default_opts)
 
 ----------------
 -- kommentary --
