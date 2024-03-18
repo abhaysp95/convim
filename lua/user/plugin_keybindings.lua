@@ -52,6 +52,16 @@ keybind('n', '<Space>hd', '<cmd>lua require"gitsigns".diffthis()<CR>', default_o
 keybind('n', '<Space>hD', '<cmd>lua require"gitsigns".diffthis ~<CR>', default_opts)
 keybind('n', '<Space>ht', '<cmd>lua require"gitsigns".toggle_deleted()<CR>', default_opts)
 
+------------
+-- neogit --
+------------
+keybind("n", "<leader>ng", ":Neogit<CR>", default_opts)
+
+------------
+-- gitlink --
+------------
+keybind("n", "<leader>hg", "<cmd>GitLink<CR>", default_opts)
+keybind("n", "<leader>hG", "<cmd>GitLink blame<CR>", default_opts)
 
 --------------------
 -- nvim-telescope --
@@ -119,11 +129,6 @@ vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_default", {})
 vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
 vim.api.nvim_set_keymap("x", "<leader>c", "<Plug>kommentary_visual_default", {})
 --]]
-
-------------
--- neogit --
-------------
-keybind("n", "<leader>ng", ":Neogit<CR>", default_opts)
 
 --------------
 -- diffview --
