@@ -36,7 +36,7 @@ function M.config()
       "angular", "asm", "awk", "bash", "bibtex", "c", "cpp", "clojure", "cmake",
       "elixir", "elm", "erlang", "go", "haskell", "html", "java", "javascript", "json",
       "kotlin", "latex", "lua", "make", "markdown", "markdown_inline", "meson", "nim",
-      "ocaml", "perl", "python", "proto", "rust", "ruby", "scala", "solidity", "sql",
+      "norg", "ocaml", "perl", "python", "proto", "rust", "ruby", "scala", "solidity", "sql",
       "typescript", "zig"
     },
     ignore_instal = {},  -- ignore parsers
