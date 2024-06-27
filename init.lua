@@ -41,3 +41,8 @@ spec ("user.extras.fidget")
 spec ("user.extras.navbuddy")
 spec ("user.extras.modicator")
 require ("user.lazy")
+
+if vim.g.neovide then
+  vim.o.guifont = "Operator Mono Lig:h10" -- text below applies for VimScript
+  print("neovide done")
+end
