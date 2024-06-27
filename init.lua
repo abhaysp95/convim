@@ -1,3 +1,11 @@
+-- temporary placement here
+local words = {}
+for word in string.gmatch(vim.api.nvim_exec("!uname -a", true), "%S+") do
+  words[#words + 1] = word
+end
+-- exporte globally to be used in different modules
+Architecture = words[#words - 1].." "..words[#words]
+
 require ("user.launch")
 require ("user.options")
 require ("user.keymaps")
@@ -9,7 +17,9 @@ spec ("user.devicons")
 spec ("user.treesitter")
 spec ("user.mason")
 spec ("user.schemastore")
-spec ("user.lspconfig")
+if Architecture ~= "aarch64 Android" then
+  spec ("user.lspconfig")
+end
 spec ("user.cmp")
 -- spec ("user.whichkey")
 spec ("user.none-ls")
