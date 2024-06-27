@@ -15,9 +15,9 @@ spec ("user.colorscheme")
 spec ("user.norg")
 spec ("user.devicons")
 spec ("user.treesitter")
-spec ("user.mason")
 spec ("user.schemastore")
 if Architecture ~= "aarch64 Android" then
+  spec ("user.mason")
   spec ("user.lspconfig")
 end
 spec ("user.cmp")
