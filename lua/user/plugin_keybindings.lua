@@ -74,11 +74,12 @@ keybind('n', '<Leader>tw', [[:lua require('telescope.builtin').grep_string { sea
 keybind('n', '<Leader>tb', [[:lua require('telescope.builtin').buffers()<CR>]], default_opts)
 keybind('n', '<Leader>th', [[:lua require('telescope.builtin').help_tags()<CR>]], default_opts)
 keybind('n', '<Leader>tC', [[:lua require('telescope.builtin').colorscheme()<CR>]], default_opts)
-keybind('n', '<Leader>trc', [[:lua require('telescope.builtin').search_dotfiles()<CR>]], default_opts)
+keybind('n', '<Leader>td', [[:lua require('telescope.builtin').search_dotfiles()<CR>]], default_opts)
 keybind('n', '<Leader>tg', [[:lua require('telescope.builtin').git_files()<CR>]], default_opts)
 keybind('n', '<Leader>tG', [[:lua require('telescope.builtin').git_branches()<CR>]], default_opts)
 keybind('n', '<Leader>tc', [[:lua require('telescope.builtin').git_commits()<CR>]], default_opts)
 keybind('n', '<Leader>ts', [[:lua require('telescope.builtin').git_stash()<CR>]], default_opts)
+keybind('n', '<Leader>tr', [[:lua require('telescope.builtin').resume()<CR>]], default_opts)
 
 -------------
 -- lspsaga --
