@@ -32,36 +32,11 @@ local keybind = vim.api.nvim_buf_set_keymap
 
   require("gitsigns").setup {
     signs = {
-      add = {
-        hl = "GitSignsAdd",
-        text = icons.ui.BoldLineMiddle,
-        numhl = "GitSignsAddNr",
-        linehl = "GitSignsAddLn",
-      },
-      change = {
-        hl = "GitSignsChange",
-        text = icons.ui.BoldLineDashedMiddle,
-        numhl = "GitSignsChangeNr",
-        linehl = "GitSignsChangeLn",
-      },
-      delete = {
-        hl = "GitSignsDelete",
-        text = icons.ui.TriangleShortArrowRight,
-        numhl = "GitSignsDeleteNr",
-        linehl = "GitSignsDeleteLn",
-      },
-      topdelete = {
-        hl = "GitSignsDelete",
-        text = icons.ui.TriangleShortArrowRight,
-        numhl = "GitSignsDeleteNr",
-        linehl = "GitSignsDeleteLn",
-      },
-      changedelete = {
-        hl = "GitSignsChange",
-        text = icons.ui.BoldLineMiddle,
-        numhl = "GitSignsChangeNr",
-        linehl = "GitSignsChangeLn",
-      },
+      add = { text = icons.ui.BoldLineMiddle },
+      change = { text = icons.ui.BoldLineDashedMiddle },
+      delete = { text = icons.ui.TriangleShortArrowRight },
+      topdelete = { text = icons.ui.TriangleShortArrowDown },
+      changedelete = { text = icons.ui.BoldLineMiddle },
     },
     watch_gitdir = {
       interval = 1000,
