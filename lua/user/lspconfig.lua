@@ -40,12 +40,12 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "<Leader>ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   keymap(bufnr, "n", "<Leader>gR", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   keymap(bufnr, "n", "<Leader>gf", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  keymap(bufnr, "n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  keymap(bufnr, "n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+  keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   keymap(bufnr, "n", "<Leader>gs", "<cmd>lua vim.diagnostic.show()<CR>", opts)
   keymap(bufnr, "n", "<Leader>gl", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   keymap(bufnr, "n", "<Leader>gq", "<cmd>lua vim.diagnostic.setqflist()<CR>", opts)
-  keymap(bufnr, "n", "<Leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  keymap(bufnr, "n", "<Leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -68,6 +68,8 @@ M.toggle_inlay_hints = function()
 end
 
 function M.config()
+  print("from lspconfig", Architecture)
+
   -- local wk = require "which-key"
   -- wk.register {
   --   ["<leader>la"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
