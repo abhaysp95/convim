@@ -70,4 +70,10 @@ local M = {
   }
 }
 
+function M.config()
+  local tc = require("todo-comments")
+  vim.keymap.set("n", "]t", function() tc.jump_next() end, { desc = "Next todo comment" })
+  vim.keymap.set("n", "[t", function() tc.jump_next() end, { desc = "Prev todo comment" })
+end
+
 return M
