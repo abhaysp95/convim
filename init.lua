@@ -21,6 +21,9 @@ spec ("user.schemastore")
 if Architecture ~= "aarch64 Android" then
   spec ("user.mason")
   spec ("user.lspconfig")
+  spec ("user.lsp_lines")
+  spec ("user.extras.twilight")
+  spec ("user.extras.zen-mode")
 end
 spec ("user.cmp")
 -- spec ("user.whichkey")
