@@ -331,12 +331,13 @@ function M.config()
       find_files = {
         theme = "dropdown",
         previewer = true,
+        initial_mode = "insert",
       },
 
       buffers = {
         theme = "dropdown",
         previewer = true,
-        initial_mode = "normal",
+        initial_mode = "insert",
         mappings = {
           i = {
             ["<C-d>"] = actions.delete_buffer,
