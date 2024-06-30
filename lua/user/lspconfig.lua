@@ -17,14 +17,6 @@ local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true, }
   local keymap = vim.api.nvim_buf_set_keymap
 
-  --   ["<leader>li"] = { "<cmd>LspInfo<cr>", "Info" },
-  --   ["<leader>lj"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
-  --   ["<leader>lh"] = { "<cmd>lua require('user.lspconfig').toggle_inlay_hints()<cr>", "Hints" },
-  --   ["<leader>lk"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
-  --   ["<leader>ll"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-  --   ["<leader>lq"] = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-  --   ["<leader>lr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-  --
   keymap(bufnr, "n", "<Leader>gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   keymap(bufnr, "n", "<Leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
@@ -164,6 +156,14 @@ function M.config()
 
     lspconfig[server].setup(opts)
   end
+
+  -- if you remove lsp_lines plugin, comment this block out as it disables virtual text
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+      virtual_text = false,
+    }
+  )
 end
 
 return M
