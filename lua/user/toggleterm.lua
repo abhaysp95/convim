@@ -4,103 +4,119 @@ local M = {
 }
 
 function M.config()
-  local execs = {
-    { nil, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
-    { nil, "<M-2>", "Vertical Terminal", "vertical", 0.4 },
-    { nil, "<M-3>", "Float Terminal", "float", nil },
-  }
+  local tt = require("toggleterm")
+  tt.setup({
+    shading_factor = "0", -- TODO: check this out
+    hide_numbers = false,
+    direction = "float",
+    start_in_insert = true,
+    persist_mode = false,
+    on_open = function(_)
+      vim.opt_local.relativenumber = true,
+      -- TODO: understand more about callback below
+      vim.fn.timer_start(1, function()
+        vim.cmd('startinsert!')
+      end)
+    end,
+    -- TODO: useful in gui part, check what difference it makes with default value
+    size = function(term)
+      if term.direction == "horizontal" then
+        return vim.o.lines * 0.5
+      elseif term.direction == "vertical" then
+        return vim.o.columns * 0.5
+      end
+    end,
+  })
 
-  local function get_buf_size()
-    local cbuf = vim.api.nvim_get_current_buf()
-    local bufinfo = vim.tbl_filter(function(buf)
-      return buf.bufnr == cbuf
-    end, vim.fn.getwininfo(vim.api.nvim_get_current_win()))[1]
-    if bufinfo == nil then
-      return { width = -1, height = -1 }
+  local ttt = require("toggleterm.terminal")
+  local term = ttt.Terminal
+  vim.keymap.set("n", "<m-g>", function()
+    local t = term:new({
+      cmd = "lazygit",
+      display_name = "lazygit",
+    })
+    t:toggle()  -- open the terminal
+  end, { desc = "open lazygit"})
+
+  vim.keymap.set({"n", "t"}, "<m-->", function()
+    local t = term:new({
+      display_name = "dash terminal",
+      direction = "horizontal",
+    })
+    print("set dir: ", t.direction)
+    t:toggle()
+  end, { desc = "open terminal horizontally"})
+  vim.keymap.set("n", [[<m-|>]], function()
+    local t = term:new({
+      display_name = "pipe terminal",
+      direction = "vertical",
+    })
+    t:toggle()  -- open the terminal
+  end, { desc = "open terminal vertically"})
+  -- NOTE: I can write to toggle in float the same way as above, but then when rotating through terminal,
+  -- horizontal one can open in vertical, vertical in float etc.
+  -- and this will disrupt the texts present on respective terminal's screens
+
+
+  local function get_term_index(current_id, terms)
+    local idx 
+    for i, v in ipairs(terms) do
+      if  v.id == current_id then
+        idx = i
+      end
     end
-    return { width = bufinfo.width, height = bufinfo.height }
+    return idx
   end
 
-  local function get_dynamic_terminal_size(direction, size)
-    size = size
-    if direction ~= "float" and tostring(size):find(".", 1, true) then
-      size = math.min(size, 1.0)
-      local buf_sizes = get_buf_size()
-      local buf_size = direction == "horizontal" and buf_sizes.height or buf_sizes.width
-      return buf_size * size
-    else
-      return size
-    end
-  end
-
-  local exec_toggle = function(opts)
-    local Terminal = require("toggleterm.terminal").Terminal
-    local term = Terminal:new { cmd = opts.cmd, count = opts.count, direction = opts.direction }
-    term:toggle(opts.size, opts.direction)
-  end
-
-  local add_exec = function(opts)
-    local binary = opts.cmd:match "(%S+)"
-    if vim.fn.executable(binary) ~= 1 then
-      vim.notify("Skipping configuring executable " .. binary .. ". Please make sure it is installed properly.")
+  local function goto_prev_term()
+    local current_id = vim.b.toggle_number
+    if current_id == nil then
       return
     end
-
-    vim.keymap.set({ "n", "t" }, opts.keymap, function()
-      exec_toggle { cmd = opts.cmd, count = opts.count, direction = opts.direction, size = opts.size() }
-    end, { desc = opts.label, noremap = true, silent = true })
+    local terms = ttt.get_all(true)
+    local prev_index
+    local index = get_term_index(current_id, terms)
+    if index > 1 then
+      prev_index = index - 1
+    else
+      prev_index = #terms
+    end
+    tt.toggle(terms[index].id)
+    tt.toggle(terms[prev_index].id)
   end
 
-  for i, exec in pairs(execs) do
-    local direction = exec[4]
-
-    local opts = {
-      cmd = exec[1] or vim.o.shell,
-      keymap = exec[2],
-      label = exec[3],
-      count = i + 100,
-      direction = direction,
-      size = function()
-        return get_dynamic_terminal_size(direction, exec[5])
-      end,
-    }
-
-    add_exec(opts)
+  local function goto_next_term()
+    local current_id = vim.b.toggle_number
+    if current_id == nil then
+      return
+    end
+    local terms = ttt.get_all(true)
+    local next_index
+    local index = get_term_index(current_id, terms)
+    if index < #terms then
+      next_index = index + 1
+    else
+      next_index = 1
+    end
+    tt.toggle(terms[index].id)
+    tt.toggle(terms[next_index].id)
   end
 
-  require("toggleterm").setup {
-    size = 20,
-    -- open_mapping = [[<c-\>]],
-    hide_numbers = true, -- hide the number column in toggleterm buffers
-    shade_filetypes = {},
-    shade_terminals = true,
-    shading_factor = 2, -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
-    start_in_insert = true,
-    insert_mappings = true, -- whether or not the open mapping applies in insert mode
-    persist_size = false,
-    direction = "float",
-    close_on_exit = true, -- close the terminal window when the process exits
-    shell = nil, -- change the default shell
-    float_opts = {
-      border = "rounded",
-      winblend = 0,
-      highlights = {
-        border = "Normal",
-        background = "Normal",
-      },
-    },
-    winbar = {
-      enabled = true,
-      name_formatter = function(term) --  term: Terminal
-        return term.count
-      end,
-    },
-  }
-  vim.cmd [[
-  augroup terminal_setup | au!
-  autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
-  autocmd TermEnter * startinsert!
-  augroup end
+  -- TODO: add toggleterm_manager plugin
+  vim.keymap.set({"n", "t"}, "<F6>", "<cmd>Telescope toggleterm_manager<CR>", {desc = "Search terminal in telescope"})
+  vim.keymap.set({"n", "t"}, "<m-t>", [[<cmd>exe v:count1 . "ToggleTerm"<CR>]], {desc = "Toggle terminal"})
+  vim.keymap.set({"n", "t"}, "<F8>", function()
+    goto_next_term()
+  end, {desc = "Toggle terminal"})
+  vim.keymap.set({"n", "t"}, "<F7>", function()
+    goto_prev_term()
+  end, {desc = "Toggle terminal"})
+
+  vim.cmd[[
+    augroup terminal_setup | au!
+    autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
+    autocmd TermEnter * startinsert!
+    augroup end
   ]]
 
   vim.api.nvim_create_autocmd({ "TermEnter" }, {
@@ -112,12 +128,14 @@ function M.config()
   })
 
   local opts = { noremap = true, silent = true }
+  -- resize the terminal efficiently
   function _G.set_terminal_keymaps()
     vim.api.nvim_buf_set_keymap(0, "t", "<m-h>", [[<C-\><C-n><C-W>h]], opts)
     vim.api.nvim_buf_set_keymap(0, "t", "<m-j>", [[<C-\><C-n><C-W>j]], opts)
     vim.api.nvim_buf_set_keymap(0, "t", "<m-k>", [[<C-\><C-n><C-W>k]], opts)
     vim.api.nvim_buf_set_keymap(0, "t", "<m-l>", [[<C-\><C-n><C-W>l]], opts)
   end
+
 end
 
 return M
