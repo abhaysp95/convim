@@ -10,7 +10,6 @@ function M.config()
 
   -- NOTE: use the below keymap when you don't want the virtual_text to be disabled permanently
   -- which is done in lspconfig file
-  -- TODO: this is not good
   -- set this to false, if virtual_text is enabled at the start of nvim
   local lines_enabled = true
   vim.keymap.set('n', '<Leader>lL', function()
