@@ -6,7 +6,7 @@ local M = {
 function M.config()
   local tt = require("toggleterm")
   tt.setup({
-    shading_factor = "0", -- TODO: check this out
+    shading_factor = "-15", -- TODO: check this out
     hide_numbers = false,
     direction = "float",
     start_in_insert = true,
@@ -39,6 +39,14 @@ function M.config()
   end, { desc = "open lazygit"})
 
   vim.keymap.set({"n", "t"}, "<m-->", function()
+    local terms = ttt.get_all();  -- get non-hidden terms
+    for _, v in ipairs(terms) do
+      print("direction: ", v.direction)
+      if v.direction == "horizontal" then
+        v:toggle()
+        return
+      end
+    end
     local t = term:new({
       display_name = "dash terminal",
       direction = "horizontal",
@@ -46,7 +54,14 @@ function M.config()
     print("set dir: ", t.direction)
     t:toggle()
   end, { desc = "open terminal horizontally"})
-  vim.keymap.set("n", [[<m-|>]], function()
+  vim.keymap.set({"n", "t"}, [[<m-|>]], function()
+    local terms = ttt.get_all()
+    for _, v in ipairs(terms) do
+      if v.direction == "vertical" then
+        v:toggle()
+        return
+      end
+    end
     local t = term:new({
       display_name = "pipe terminal",
       direction = "vertical",
