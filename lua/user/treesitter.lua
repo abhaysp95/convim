@@ -18,9 +18,9 @@ local ensure_installed;
 if Architecture ~= "aarch64 Android" then
   ensure_installed = {
     "angular", "asm", "awk", "bash", "bibtex", "c", "cpp", "clojure", "cmake",
-    "elixir", "elm", "erlang", "go", "haskell", "html", "java", "javascript", "json",
+    "elixir", "elm", "erlang", "go", "haskell", "html", "java", "javascript", "journal", "json",
     "kotlin", "latex", "lua", "make", "markdown", "markdown_inline", "meson", "nim",
-    "norg", "ocaml", "perl", "python", "proto", "rust", "ruby", "scala", "solidity", "sql",
+    "norg", "ocaml", "perl", "python", "proto", "regex", "rust", "ruby", "scala", "solidity", "sql",
     "typescript", "zig"
   }
 else
