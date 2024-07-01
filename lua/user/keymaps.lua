@@ -167,8 +167,8 @@ keybind('n', '<M-l>', ':vertical resize +2<CR>', default_opts)
 keybind('n', '<M-j>', ':resize -2<CR>', default_opts)
 
 -- change split orientation
-keybind('n', '<Localleader>th', '<C-w>t<C-w>H', default_opts)
-keybind('n', '<Localleader>tk', '<C-w>t<C-w>K', default_opts)
+keybind('n', '<Localleader>wh', '<C-w>t<C-w>H', default_opts)
+keybind('n', '<Localleader>wk', '<C-w>t<C-w>K', default_opts)
 
 -- tab bindings
 keybind('n', '<Localleader>gd', ':tabclose<CR>', default_opts)
@@ -202,6 +202,11 @@ keybind("v", "<", "<gv", default_opts)
 keybind("v", ">", ">gv", default_opts)
 
 keybind("x", "p", [["_dP]])
+
+-- copy file name
+keybind("n", "<leader>cf", [[<cmd>let @+ = expand("%")<CR>]], default_opts)
+-- copy file path
+keybind("n", "<leader>cf", [[<cmd>let @+ = expand("%:p")<CR>]], default_opts)
 
 vim.cmd [[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<CR>]]
 vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]]
