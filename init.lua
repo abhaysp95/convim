@@ -59,6 +59,7 @@ spec ("user.extras.fidget")
 spec ("user.extras.navbuddy")
 spec ("user.extras.modicator")
 spec ("user.extras.todo-comments")
+spec ("user.nvim-surround")
 -- spec ("user.extras.markdown-preview")  -- nice plugin, but don't always need it
 require ("user.lazy")
 
