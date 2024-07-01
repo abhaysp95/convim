@@ -1,5 +1,5 @@
 local M = {
-  "kylechui/nvim-surrond",
+  "kylechui/nvim-surround",
   version = "*",  -- Use for stability; omit to use 'main' branch for latest features
   event = "VeryLazy",
 }
