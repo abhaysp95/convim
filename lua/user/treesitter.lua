@@ -18,13 +18,13 @@ local ensure_installed;
 if Architecture ~= "aarch64 Android" then
   ensure_installed = {
     "angular", "asm", "awk", "bash", "bibtex", "c", "cpp", "clojure", "cmake",
-    "elixir", "elm", "erlang", "go", "haskell", "html", "java", "javascript", "journal", "json",
+    "elixir", "elm", "erlang", "go", "haskell", "html", "java", "javascript", "ledger", "json",
     "kotlin", "latex", "lua", "make", "markdown", "markdown_inline", "meson", "nim",
     "norg", "ocaml", "perl", "python", "proto", "regex", "rust", "ruby", "scala", "solidity", "sql",
     "typescript", "zig"
   }
 else
-  ensure_installed = { "c", "bash", "markdown", "markdown_inline", "vimdoc" }
+  ensure_installed = { "c", "bash", "markdown", "markdown_inline", "vimdoc", "ledger" }
 end
 
 function M.config()
