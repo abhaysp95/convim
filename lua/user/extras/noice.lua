@@ -66,6 +66,38 @@ function M.config()
       -- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
       kind_icons = {}, -- set to `false` to disable icons
     },
+  routes = {
+      {
+        view = "notify",
+        filter = { event = "msg_showmode" },
+      },
+    },
+    -- TODO: this section below doesn't work
+    -- https://github.com/folke/noice.nvim/wiki/Configuration-Recipes#show-recording-messages
+    -- https://github.com/folke/noice.nvim/discussions/795
+    sections = {
+      lualine_x = {
+        {
+          require("noice").api.status.message.get_hl,
+          cond = require("noice").api.status.message.has,
+        },
+        {
+          require("noice").api.status.command.get,
+          cond = require("noice").api.status.command.has,
+          color = { fg = "#ff9e64" },
+        },
+        {
+          require("noice").api.status.mode.get,
+          cond = require("noice").api.status.mode.has,
+          color = { fg = "#ff9e64" },
+        },
+        {
+          require("noice").api.status.search.get,
+          cond = require("noice").api.status.search.has,
+          color = { fg = "#ff9e64" },
+        },
+      },
+    }
   })
 end
 
