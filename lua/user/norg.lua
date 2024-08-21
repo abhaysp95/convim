@@ -36,6 +36,7 @@ function M.config()
             work = "~/neorg/work",
             proj_ideas = "~/neorg/proj_ideas",
             quick_notes = "~/neorg/quick_notes",
+            cp = "~/neorg/coding_problems",
           },
           default_workspace = "quick_notes",
         },

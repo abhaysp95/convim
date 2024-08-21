@@ -44,6 +44,7 @@ function M.config()
     float = {
       max_height = 35,
       max_width = 100,
+      border = "rounded" -- none (but gives error on preview)
     },
   }
 

@@ -21,7 +21,7 @@ spec ("user.schemastore")
 if Architecture ~= "aarch64 Android" then
   spec ("user.mason")
   spec ("user.lspconfig")
-  spec ("user.lsp_lines")
+  -- spec ("user.lsp_lines")
   spec ("user.extras.twilight")
   spec ("user.extras.zen-mode")
 end
@@ -52,7 +52,7 @@ spec ("user.extras.tabby")
 spec ("user.extras.neoscroll")
 spec ("user.extras.oil")
 spec ("user.extras.ufo")
-spec ("user.extras.noice")
+-- spec ("user.extras.noice")
 spec ("user.extras.gitlinker")
 spec ("user.extras.bqf")
 spec ("user.extras.dressing") -- doesn't allow me to use Ctrl-F like I do in command mode
@@ -61,7 +61,7 @@ spec ("user.extras.fidget")
 spec ("user.extras.navbuddy")
 spec ("user.extras.modicator")
 spec ("user.extras.todo-comments")
--- spec ("user.extras.markdown-preview")  -- nice plugin, but don't always need it
+spec ("user.extras.markdown-preview")  -- nice plugin, but don't always need it
 require ("user.lazy")
 
 if vim.g.neovide then

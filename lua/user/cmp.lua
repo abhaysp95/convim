@@ -6,10 +6,10 @@ local M = {
       "hrsh7th/cmp-nvim-lsp",
       event = "InsertEnter",
     },
-    {
-      "hrsh7th/cmp-emoji",
-      event = "InsertEnter",
-    },
+    -- {
+    --   "hrsh7th/cmp-emoji",
+    --   event = "InsertEnter",
+    -- },
     {
       "hrsh7th/cmp-buffer",
       event = "InsertEnter",
@@ -56,11 +56,11 @@ function M.config()
   local icons = require "user.icons"
 
   cmp.setup {
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body) -- For `luasnip` users.
-      end,
-    },
+    -- snippet = {
+    --   expand = function(args)
+    --     luasnip.lsp_expand(args.body) -- For `luasnip` users.
+    --   end,
+    -- },
     mapping = cmp.mapping.preset.insert {
       ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
       ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
@@ -134,15 +134,15 @@ function M.config()
       end,
     },
     sources = {
-      { name = "copilot" },
+      -- { name = "copilot" },
       { name = "nvim_lsp" },
-      { name = "luasnip" },
-      { name = "cmp_tabnine" },
-      { name = "nvim_lua" },
+      -- { name = "luasnip" },
+      -- { name = "cmp_tabnine" },
+      -- { name = "nvim_lua" },
       { name = "buffer" },
       { name = "path" },
       { name = "calc" },
-      { name = "emoji" },
+      -- { name = "emoji" },
       { name = "treesitter" },
       -- { name = "crates" },
     },

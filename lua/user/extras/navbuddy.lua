@@ -16,7 +16,25 @@ function M.config()
   -- local actions = require("nvim-navbuddy.actions")
   navbuddy.setup {
     window = {
-      border = "rounded",
+      border = "single",
+      size = { height = "75%", width = "90%"},
+			sections = {
+				left = {
+					size = "20%",
+					border = nil, -- You can set border style for each section individually as well.
+				},
+				mid = {
+					size = "30%",
+					border = "solid",
+				},
+				right = {
+					-- No size option for right most section. It fills to
+					-- remaining area.
+					border = nil,
+					preview = "always",  -- Right section can show previews too.
+									   -- Options: "leaf", "always" or "never"
+				}
+			}
     },
     icons = require("user.icons").kind,
     lsp = { auto_attach = true },

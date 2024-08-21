@@ -35,6 +35,17 @@ function M.config()
         ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
       },
     },
+    -- NOTE: currently getting error from nui mentioning "Invalid end_col/col: out of range"
+    -- related issues: https://github.com/MunifTanjim/nui.nvim/issues/376
+    -- related issues: https://github.com/folke/noice.nvim/issues/875
+    -- TODO: these options below are not helping. Getting issue with zig.
+    -- Raise the issue in noice's repo, asking what these settings do and whether the error is related to this
+    signature = {
+      enabled = false,
+    },
+    hover = {
+      enabled = false,
+    },
     config = {
       notify = {
         enabled = true,
@@ -101,4 +112,4 @@ function M.config()
   })
 end
 
-return M;
+return M
