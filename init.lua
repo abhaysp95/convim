@@ -52,7 +52,7 @@ spec ("user.extras.tabby")
 spec ("user.extras.neoscroll")
 spec ("user.extras.oil")
 spec ("user.extras.ufo")
--- spec ("user.extras.noice")
+spec ("user.extras.noice")
 spec ("user.extras.gitlinker")
 spec ("user.extras.bqf")
 spec ("user.extras.dressing") -- doesn't allow me to use Ctrl-F like I do in command mode
