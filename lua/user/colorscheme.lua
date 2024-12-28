@@ -27,7 +27,8 @@ function M.config()
 	vim.cmd.colorscheme("gruvbox-material")
 	vim.opt.background = "dark"
 	vim.g.moonflyItalics = false
-	vim.cmd("highlight Normal ctermbg=none guibg=none")
+	vim.cmd.highlight("Normal ctermbg=none guibg=none")
+	vim.cmd.highlight("NormalNC ctermbg=none guibg=none")
 end
 
 return M
