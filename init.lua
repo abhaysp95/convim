@@ -42,6 +42,7 @@ spec("user.toggleterm")
 -- spec ("user.toggleterm-manager") -- not using for now, will see if my workflow is fine without this
 spec("user.gitsigns")
 spec("user.neogit")
+spec("user.fugitive")
 spec("user.diffview")
 spec("user.autopairs")
 spec("user.project")

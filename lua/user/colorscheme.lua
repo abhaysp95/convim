@@ -2,11 +2,13 @@ local M = {
 	-- "LunarVim/darkplus.nvim",
 	-- 'ChristianChiarulli/nvcode-color-schemes.vim',
 	-- 'savq/melange-nvim',
-	-- 'folke/tokyonight.nvim',
+	-- "folke/tokyonight.nvim",
+	"AlexvZyl/nordic.nvim",
+	-- "baliestri/aura-theme",
 	-- 'RRethy/base16-nvim',
 	-- 'bluz71/vim-moonfly-colors',
 	-- 'ellisonleao/gruvbox.nvim',
-	"sainnhe/gruvbox-material",
+	-- "sainnhe/gruvbox-material",
 	-- 'mcchrish/zenbones.nvim',
 	-- dependencies = {
 	--   "rktjmp/lush.nvim"
@@ -20,11 +22,12 @@ local M = {
 	priority = 1000, -- make sure to load this before all the other start plugins
 }
 
-function M.config()
+function M.config(plugin)
 	-- require("gruvbox").setup({
 	-- 	contrast = "hard",
 	-- })
-	vim.cmd.colorscheme("gruvbox-material")
+	-- vim.opt.rtp:append(plugin.dir .. "/packages/neovim") -- for "aura-theme"
+	vim.cmd.colorscheme("nordic")
 	vim.opt.background = "dark"
 	vim.g.moonflyItalics = false
 	vim.cmd.highlight("Normal ctermbg=none guibg=none")

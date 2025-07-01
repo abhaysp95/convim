@@ -19,7 +19,10 @@ function M.config()
 					command = { "zsh" },
 				},
 				python = {
-					command = { "ipython", "--no-autoindent" },
+					command = {
+						"ipython",
+						"--no-autoindent",
+					},
 					-- command = { "python3" }, -- or { "ipython", "--no-autoindent" }
 					format = require("iron.fts.common").bracketed_paste_python,
 				},
